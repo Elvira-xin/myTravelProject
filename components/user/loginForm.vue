@@ -34,6 +34,7 @@ export default {
     }
   },
   methods: {
+    // 提交登录
     handleLoginSubmit () {
       this.$refs.form.validate((valid) => {
         if (valid) {
@@ -43,12 +44,16 @@ export default {
             data: this.form
           }).then((res) => {
             // console.log(res)
-            this.$message.success('登录成功')
-            this.$router.push({ name: 'index' })
+            this.$message.success('登录成功,正在跳转')
+            this.$store.commit('user/setUserInfo', res.data)
+            setTimeout(() => {
+              this.$router.push({ name: 'index' })
+            }, 2000)
           })
             .catch(() => {
               this.$message.error('登录失败')
             })
+          // this.$store.dispatch('user/login')
         }
       })
     }

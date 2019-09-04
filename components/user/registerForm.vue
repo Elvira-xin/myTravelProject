@@ -47,6 +47,7 @@ export default {
       }
     }
     return {
+      code: '',
       // 表单数据
       form: {
         username: '',
@@ -58,7 +59,12 @@ export default {
       // 表单规则
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' }
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          {
+            pattern: /^1\d{10}$/,
+            message: '请输入正确的电话号码',
+            trigger: 'blur'
+          }
         ],
         captcha: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
         nickname: [{ required: true, message: '请输入昵称', trigger: 'blur' }],
@@ -81,9 +87,10 @@ export default {
         method: 'post',
         data: { tel: this.form.username }
       }).then((res) => {
-        // console.log(res)
-        const { code } = res.data
-        this.$alert(`模拟验证码为:${code}`)
+        console.log(res)
+        // const { code } = res.data
+        this.code = res.data.code
+        this.$alert(`模拟验证码为:${this.code}`)
       })
     },
 
@@ -97,9 +104,20 @@ export default {
             url: '/accounts/register',
             method: 'post',
             data: vals
-          }).then((res) => {
-            console.log(res)
           })
+            .then((res) => {
+              // console.log(res)
+              this.$store.commit('user/setUserInfo', res.data)
+              this.$message.success('注册成功')
+              setTimeout(() => {
+                this.$router.push({ name: 'index' })
+              }, 2000)
+            })
+            .catch(() => {
+              if (this.form.captcha !== this.code) {
+                this.$message.error('验证码错误')
+              }
+            })
         }
       })
     }
