@@ -8,7 +8,7 @@
     </el-form-item>
     <span class="form-text" style="margin-left:300px"><nuxt-link to="#">忘记密码</nuxt-link></span>
     <el-form-item>
-      <el-button class="submit" @click="handleLoginSubmit">
+      <el-button class="submit" type="primary" plain @click="handleLoginSubmit">
         登录
       </el-button>
     </el-form-item>
