@@ -50,9 +50,6 @@ export default {
               this.$router.push({ name: 'index' })
             }, 2000)
           })
-            .catch(() => {
-              this.$message.error('登录失败')
-            })
           // this.$store.dispatch('user/login')
         }
       })

@@ -31,6 +31,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    // 配置axios拦截器
+    '@/plugins/axios',
     '@/plugins/element-ui',
     { src: '~/plugins/localStorage.js', ssr: false }
   ],
@@ -53,6 +55,13 @@ export default {
   axios: {
     baseURL: 'http://127.0.0.1:1337' // 新增axios默认请求路径
   },
+  rules: {
+    'standard/object-curly-even-spacing': [2, 'either'],
+    'standard/array-bracket-even-spacing': [2, 'either'],
+    'standard/computed-property-even-spacing': [2, 'even'],
+    'standard/no-callback-literal': [2, ['cb', 'callback']]
+  },
+
   /*
   ** Build configuration
   */

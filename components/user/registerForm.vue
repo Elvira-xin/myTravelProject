@@ -87,7 +87,7 @@ export default {
         method: 'post',
         data: { tel: this.form.username }
       }).then((res) => {
-        console.log(res)
+        // console.log(res)
         // const { code } = res.data
         this.code = res.data.code
         this.$alert(`模拟验证码为:${this.code}`)
@@ -96,7 +96,7 @@ export default {
 
     // 注册
     handleRegSubmit () {
-      console.log(this.form)
+      // console.log(this.form)
       this.$refs.form.validate((valid) => {
         if (valid) {
           const { checkPassword, ...vals } = this.form
