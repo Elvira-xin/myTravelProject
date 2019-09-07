@@ -1,5 +1,5 @@
 <template>
-  <div class="flight-item">
+  <div class="flight-item" @click="isShow=!isShow">
     <div>
       <!-- 显示的机票信息 -->
       <el-row type="flex" align="middle" class="flight-info">
@@ -26,7 +26,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="flight-recommend">
+    <div v-show="isShow" class="flight-recommend">
       <!-- 隐藏的座位信息列表 -->
       <el-row type="flex" justify="space-between" align="middle">
         <el-col :span="4">
@@ -77,15 +77,13 @@ export default {
   },
   data () {
     return {
-
+      isShow: false
     }
   },
   computed: {
     getRankTime () {
       const arrTime = this.data.arr_time.split(':')
-      console.log(arrTime)
       const depTime = this.data.dep_time.split(':')
-      console.log(depTime)
       if (arrTime[0] < depTime[0]) {
         arrTime[0] += 24
       }
@@ -95,7 +93,6 @@ export default {
       return `${disHour}小时${disMin}分`
     }
   }
-
 }
 </script>
 
