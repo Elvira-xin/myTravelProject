@@ -51,6 +51,7 @@
               <el-button
                 type="warning"
                 size="mini"
+                @click="chooseSeat(data.id,item.seat_xid)"
               >
                 选定
               </el-button>
@@ -91,6 +92,17 @@ export default {
       const disHour = Math.floor(dis / 60)
       const disMin = dis % 60
       return `${disHour}小时${disMin}分`
+    }
+  },
+  methods: {
+    chooseSeat(id,setId){
+      this.$router.push({
+        path:'/air/order',
+        query:{
+          id,
+          seat_xid:setId
+        }
+      })
     }
   }
 }

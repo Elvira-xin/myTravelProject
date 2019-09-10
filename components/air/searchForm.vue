@@ -204,6 +204,10 @@ export default {
         path: '/air/flights',
         query: this.form
       })
+      //添加数据到本地
+      const arr=JSON.parse(localStorage.getItem('airs'))||[];
+      arr.push(this.form)
+      localStorage.setItem('airs',JSON.stringify(arr))
     }
   }
 }
